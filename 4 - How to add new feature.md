@@ -1,11 +1,11 @@
-## New feature implementation process (example)
+## 4. New feature implementation process (example)
 
 New feature implementation process in Redux is standardized, and almost every feature requires the same typical steps.
 Let's take the following example - you are developing screen with the information about user (name, phone number, password, etc) with ability to change it and 
 sync to the server.
 So what do you need to implement this feature?
 
-### Designing props
+### 4.1 Designing props
 
 First of all, let's design our props:
 
@@ -34,7 +34,7 @@ that it's a closure, which takes string as an input. We pass the string from the
 And lastly, we add the ```save``` command, which is a closure, which will invoke when the user clicks save button. This command is optional, and this semantically
 means that this command can be empty - in case if user didn't enter any data, we don't allow to save it by passing null instead of command.
 
-### 5.2 Designing state and connector
+### 4.2 Designing state and connector
 
 The next step is to implement our ```State``` class and ```Connector```.
 For the state we can also use simple data class:
@@ -115,7 +115,7 @@ fun unsubscribe(fragment: Fragment) {
 At this point, when you open the fragment, it should get correct props which are mapped from the state. To test it - write some default values in state class,
 and check whether fragment's  ```render``` method gets the right value.
 
-### 5.3 Implementing the interactions
+### 4.3 Implementing the interactions
 
 After we've wired our screen with the state, let's add user interactions to it.
 Let's create the following actions:
@@ -184,7 +184,7 @@ the related action to store.
 
 After this step, we've got everything up and running, except for the last part - making a request to the backend to save the data.
 
-## 5.4 Side effects handling
+## 4.4 Side effects handling
 
 In our case, we want to make a network request, which saves the user data to the backend.
 One possible solution - make it inside closure within the connector. However, it makes our connectors pretty big and doesn't allow to share the logic
@@ -204,7 +204,7 @@ class LoginMiddleware(private val store: Store, private val loginService: LoginS
             is UpdateAccountInfo -> {
                 launch {
                     val loginState = store.appState().loginState
-                    loginService.updateInfo(aboutYouState.phone, aboutYouState.name, aboutYouState.lastName, onSuccess = {
+                    aboutYouService.updateInfo(aboutYouState.phone, aboutYouState.name, aboutYouState.lastName, onSuccess = {
                         store.dispatch(AccountInfoUpdated)
                     })
                 }

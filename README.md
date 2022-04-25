@@ -1,8 +1,26 @@
-This repository contains documents for Redux architectural pattern (library link: TBD) in Android ecostem.
-
+## General info
+This repository contains documents for Redux architectural pattern (library link: https://jitpack.io/#SergeyGubar/redux-demo) in Android ecostem.
 Done within scope of Master's degree in Kharkiv National University of Radioelectrions ([Software Engineering department](https://nure.ua/ru/department/kafedra-programmnoy-inzhenerii-pi))
 
+## How to install 
 
+Add jitpack to your project:
+
+```Groovy
+allprojects {
+  repositories {
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
+
+Include library in build.gradle:
+
+```Groovy
+implementation 'com.github.SergeyGubar:redux-demo:1.0.0'
+```
+
+## Doc links
 To understand the concepts of Redux architecture and how to use it on the real project, consider reading the following sections:
 
 1. [Redux basics - what is it, and why you should use it](https://github.com/SergeyGubar/redux-arch-overview/blob/main/1%20-%20Basic%20concepts.md)
